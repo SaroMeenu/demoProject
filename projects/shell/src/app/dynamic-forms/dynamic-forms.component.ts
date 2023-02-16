@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup , FormControl} from '@angular/forms';
 import { FormData, FormFieldData } from 'projects/shell/shared/interface/form-data';
+import {FormlyFieldConfig, FormlyFormOptions} from "@ngx-formly/core";
 
 @Component({
   selector: 'app-dynamic-forms',
@@ -11,6 +12,10 @@ export class DynamicFormsComponent implements OnInit {
   @Input()formData!: any;
   form!: FormGroup;
   formFieldData: any=[];
+  public options: FormlyFormOptions = {};
+  public model = {  
+  };
+  public fields: FormlyFieldConfig[] = [];
   constructor() {}
 
   ngOnChanges(){
@@ -22,16 +27,24 @@ export class DynamicFormsComponent implements OnInit {
       this.formData.fields[formControlFields[i]].formControlName = formControlFields[i]
       formGroup[formControlFields[i]] = new FormControl('');
       this.formFieldData.push(this.formData.fields[formControlFields[i]])
+      this.formFieldData[i].key = this.formFieldData[i].formControlName;
+      this.formFieldData[i].templateOptions = {options : this.formFieldData[i].options};
     }
-    console.log(this.formData)
     console.log(this.formFieldData)
     this.form = new FormGroup(formGroup);
   }
   ngOnInit() {
+    this.fields = this.formFieldData;
   }
 
   submit(){
-    console.log(this.form.value)
+    if (this.form.valid) {
+      console.log(JSON.stringify(this.model));
+    }
   }
+
+ 
+
+
  
 }

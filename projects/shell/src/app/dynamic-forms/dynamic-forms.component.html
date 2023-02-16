@@ -1,23 +1,8 @@
 <h1> {{formData.title}} </h1>
 
-<form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()">
-    <ng-template ngFor let-input [ngForOf]="formFieldData">
-        <ng-container [ngSwitch]="input.type">
-    
-          <ng-template [ngSwitchCase]="'radio'">
-            <p>{{input.label}}</p>
-            <div *ngFor="let opt of input.options">
-              <input *ngIf="opt.value" [formControlName]="input.formControlName" type="radio" [name]="input.formControlName" [value]="opt.value" [attr.id]="opt.value" >
-              <label [for]="input.formControlName"> {{opt.label}}</label>
-            </div>
-    
-          </ng-template>         
-
-        </ng-container>
-      </ng-template>
-
-      <button type="submit">
-        Submit
-      </button>
- </form>
- 
+ <form [formGroup]="form" (ngSubmit)="submit()">
+  <ng-template ngFor let-input [ngForOf]="formFieldData"> {{input.label}} 
+    <formly-form [form]="form" [fields]="fields" [model]="model" [options]="options" ></formly-form>
+    <button class="mat-button" type="submit">Submit</button>
+  </ng-template>
+</form>
