@@ -1,8 +1,10 @@
 <h1> {{formData.title}} </h1>
 
  <form [formGroup]="form" (ngSubmit)="submit()">
+  
   <ng-template ngFor let-input [ngForOf]="formFieldData"> {{input.label}} 
     <formly-form [form]="form" [fields]="fields" [model]="model" [options]="options" ></formly-form>
     <button class="mat-button" type="submit">Submit</button>
   </ng-template>
+  
 </form>

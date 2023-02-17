@@ -22,7 +22,6 @@ export class DynamicFormsComponent implements OnInit {
 
     const formGroup:any = {};
     var formControlFields = Object.keys(this.formData.fields)
-    console.log(formControlFields)
     for (let i = 0; i < formControlFields.length; i++) {
       this.formData.fields[formControlFields[i]].formControlName = formControlFields[i]
       formGroup[formControlFields[i]] = new FormControl('');
@@ -30,7 +29,6 @@ export class DynamicFormsComponent implements OnInit {
       this.formFieldData[i].key = this.formFieldData[i].formControlName;
       this.formFieldData[i].templateOptions = {options : this.formFieldData[i].options};
     }
-    console.log(this.formFieldData)
     this.form = new FormGroup(formGroup);
   }
   ngOnInit() {
