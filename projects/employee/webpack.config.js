@@ -10,7 +10,7 @@ sharedMappings.register(
 
 module.exports = {
   output: {
-    uniqueName: "shell",
+    uniqueName: "employee",
     publicPath: "auto"
   },
   optimization: {
@@ -29,19 +29,21 @@ module.exports = {
         library: { type: "module" },
 
         // For remotes (please adjust)
-        // name: "shell",
+        // name: "employee",
         // filename: "remoteEntry.js",
         // exposes: {
-        //     './Component': './projects/shell/src/app/app.component.ts',
-        // }, 
+        //     './Component': './projects/employee/src/app/app.component.ts',
+        // },   
         
-        remotes: {
-          "employee": "http://localhost:3000/remoteEntry.js"
-      },
+        name: "employee",
+        filename: "remoteEntry.js",
+        exposes: {
+            './Module': './projects/employee/src/app/app.module.ts',
+        },   
         
         // For hosts (please adjust)
         // remotes: {
-        //     "mfe1": "http://localhost:3000/remoteEntry.js",
+        //     "shell": "http://localhost:5000/remoteEntry.js",
 
         // },
 
