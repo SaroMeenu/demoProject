@@ -10,11 +10,13 @@ import { DynamicFormsComponent } from './dynamic-forms/dynamic-forms.component';
 import { CommonModule } from '@angular/common';
 import { FormlyFieldConfig , FormlyModule }from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { MortgageComponent } from './mortgage/mortgage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DynamicFormsComponent,
+    MortgageComponent,
   ],
   imports: [
     BrowserModule,

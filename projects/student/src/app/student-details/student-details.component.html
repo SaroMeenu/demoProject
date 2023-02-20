@@ -1,0 +1,78 @@
+<form [formGroup]="studentForm" (ngSubmit)="submit()">   
+    <div>     
+        <label for="name"> Name</label>     
+        <input id="name" type="text" formControlName="name" />  
+     </div>   
+     <div *ngIf="studentForm.controls['name'].errors?.['required'] && submitted" class="error">
+        Name is required.
+      </div>
+     <ng-container formArrayName="emails">     
+        <ng-container *ngFor="let emailForm of emails.controls; let i = index">       
+            <div [formGroupName]="i"> 
+                <label for="email"> Email</label>         
+                <input id="email" type="text" formControlName="email" />      
+            </div>     
+            <div class="error" *ngIf="submitted && emailIndex(i).controls['email'].hasError('required')"> 
+                Email is required.
+             </div>  
+        </ng-container>   
+    </ng-container>  
+    <button type="button" (click)="addNewEmail()">Add</button> 
+    <ng-container formArrayName="mobile">     
+        <ng-container *ngFor="let mobileForm of mobile.controls; let i = index">       
+            <div [formGroupName]="i"> 
+                <label for="mobileNumber"> Mobile Number</label>         
+                <input id="mobileNumber" type="text" formControlName="mobileNumber" />
+                <div class="error" *ngIf="submitted && mobileIndex(i).controls['mobileNumber'].hasError('required')"> 
+                    Mobile is required.
+                 </div> 
+                    <input id="home" type="radio" value="home" name="mobileType" formControlName="mobileType">
+                    <label for="home">Home</label>
+                    <input id="mobile" type="radio" value="mobile" name="mobileType" formControlName="mobileType">
+                    <label for="home">Mobile</label>
+
+                    <input id="work" type="radio" value="work" name="mobileType" formControlName="mobileType">
+                    <label for="work">Work</label>
+            </div>     
+        </ng-container>   
+    </ng-container>     
+    <button type="button" (click)="addNewMobile()">Add</button> 
+    <ng-container formArrayName="school">     
+        <ng-container *ngFor="let schoolForm of school.controls; let i = index">       
+            <div [formGroupName]="i"> 
+                <label for="schoolName"> Name</label>         
+                <input id="schoolName" type="text" formControlName="schoolName" />
+                <label for="address"> Address</label>  
+                <textarea id="address" type="text" formControlName="address" >
+                    </textarea>
+                <label for="state">State:</label>
+                <select id="state" name="state" formControlName="state">
+                      <option value="tamilnadu">TamilNadu</option>
+                      <option value="karnataka">Karnataka</option>
+                      <option value="andraPradesh">Andra Pradesh</option>
+                      <option value="gujarat">Gujarat</option>
+                </select>  
+                <label for="nationality">Nationality:</label>
+                <select id="nationality" name="nationality" formControlName="nationality">
+                      <option value="india"> India</option>
+                      <option value="usa"> USA</option>
+                      <option value="southafrica"> South Africa</option>
+                      <option value="srilenka"> Srilenka</option>
+                </select>  
+                <label for="fromToYear">From-To Year:</label>
+                <select id="fromToYear" name="fromToYear" formControlName="fromToYear">
+                      <option value="2015-2016"> 2015-2016</option>
+                      <option value="2016-2017">2016-2017</option>
+                      <option value="2017-2018">2017-2018</option>
+                      <option value="2018-2019">2018-2019</option>
+                </select>  
+            </div>     
+        </ng-container>   
+    </ng-container>
+    <button type="button" (click)="addNewSchool()">Add</button> 
+    <div>
+    <button class="mat-button" type="submit">Submit</button> 
+    </div>
+</form>
+
+
