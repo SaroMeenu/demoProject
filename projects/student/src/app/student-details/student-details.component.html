@@ -12,8 +12,14 @@
                 <label for="email"> Email</label>         
                 <input id="email" type="text" formControlName="email" />      
             </div>     
-            <div class="error" *ngIf="submitted && emailIndex(i).controls['email'].hasError('required')"> 
+            <div class="error" *ngIf="submitted && emailIndex(i).controls['email'].hasError('required') "> 
                 Email is required.
+                <span>
+
+                </span>
+             </div> 
+             <div class="error" *ngIf=" submitted && emailIndex(i).controls['email'].hasError('pattern') "> 
+                Email is invalid.
              </div>  
         </ng-container>   
     </ng-container>  
@@ -26,12 +32,18 @@
                 <div class="error" *ngIf="submitted && mobileIndex(i).controls['mobileNumber'].hasError('required')"> 
                     Mobile is required.
                  </div> 
-                    <input id="home" type="radio" value="home" name="mobileType" formControlName="mobileType">
+                 <div class="error" *ngIf="submitted && mobileIndex(i).controls['mobileNumber'].hasError('maxlength')"> 
+                    Mobile Number is Invalid.
+                 </div> 
+                 <div class="error" *ngIf="submitted && mobileIndex(i).controls['mobileNumber'].hasError('pattern')"> 
+                    Mobile Number is Invalid.
+                 </div> 
+                    <input type="radio" value="home" formControlName="mobileType">
                     <label for="home">Home</label>
-                    <input id="mobile" type="radio" value="mobile" name="mobileType" formControlName="mobileType">
-                    <label for="home">Mobile</label>
+                    <input type="radio" value="mobile" formControlName="mobileType">
+                    <label for="mobile">Mobile</label>
 
-                    <input id="work" type="radio" value="work" name="mobileType" formControlName="mobileType">
+                    <input type="radio" value="work" formControlName="mobileType">
                     <label for="work">Work</label>
             </div>     
         </ng-container>   
@@ -42,30 +54,39 @@
             <div [formGroupName]="i"> 
                 <label for="schoolName"> Name</label>         
                 <input id="schoolName" type="text" formControlName="schoolName" />
+                <div class="error" *ngIf="submitted && schoolIndex(i).controls['schoolName'].hasError('required')"> 
+                    Name is required.
+                 </div> 
                 <label for="address"> Address</label>  
                 <textarea id="address" type="text" formControlName="address" >
                     </textarea>
+                    <div class="error" *ngIf="submitted && schoolIndex(i).controls['address'].hasError('required')"> 
+                        Address is required.
+                     </div>
                 <label for="state">State:</label>
                 <select id="state" name="state" formControlName="state">
-                      <option value="tamilnadu">TamilNadu</option>
-                      <option value="karnataka">Karnataka</option>
-                      <option value="andraPradesh">Andra Pradesh</option>
-                      <option value="gujarat">Gujarat</option>
+                    <option value=""> All</option>
+                    <option *ngFor="let stateData of stateList">{{stateData.value}}</option>
                 </select>  
+                <div class="error" *ngIf="submitted && schoolIndex(i).controls['state'].hasError('required')"> 
+                    State is required.
+                 </div>
                 <label for="nationality">Nationality:</label>
                 <select id="nationality" name="nationality" formControlName="nationality">
-                      <option value="india"> India</option>
-                      <option value="usa"> USA</option>
-                      <option value="southafrica"> South Africa</option>
-                      <option value="srilenka"> Srilenka</option>
+                      <option value=""> All</option> 
+                      <option *ngFor="let nationalityData of nationalityList"> {{nationalityData.value}} </option>
                 </select>  
+                <div class="error" *ngIf="submitted && schoolIndex(i).controls['nationality'].hasError('required')"> 
+                    Nationality is required.
+                 </div>
                 <label for="fromToYear">From-To Year:</label>
                 <select id="fromToYear" name="fromToYear" formControlName="fromToYear">
-                      <option value="2015-2016"> 2015-2016</option>
-                      <option value="2016-2017">2016-2017</option>
-                      <option value="2017-2018">2017-2018</option>
-                      <option value="2018-2019">2018-2019</option>
+                     <option value=""> All</option> 
+                     <option *ngFor="let data of fromToYearList"> {{data.value}} </option>
                 </select>  
+                <div class="error" *ngIf="submitted && schoolIndex(i).controls['fromToYear'].hasError('required')"> 
+                    From-To Year is required.
+                 </div>
             </div>     
         </ng-container>   
     </ng-container>
