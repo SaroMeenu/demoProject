@@ -19,10 +19,14 @@ export class StudentDetailsComponent {
     school: new FormArray([this.getSchoolForm()]),
 
   })
+  studentFormDataList: any =[];
+  stuData: any = [];
+  studentInfoList: any;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.getStudentData();
   }
 
   getemailForm() {    
@@ -98,10 +102,32 @@ export class StudentDetailsComponent {
   submit(){
     this.submitted = true;
     if(this.submitted){
-      console.log(this.studentForm.value);
-    }
-    
-   
+      this.studentFormDataList.push(this.studentForm.value);
+      localStorage.setItem('studentData',(JSON.stringify(this.studentFormDataList)));
+      this.getStudentData();
+    }   
+  }
+
+  getStudentData(){
+    this.stuData = localStorage.getItem('studentData');
+    this.studentInfoList = JSON.parse(this.stuData)
+    for (let index = 0; index < this.studentInfoList.length; index++) {
+      let emailList:Array<any> = [];
+      let mobileList:Array<any> = [];
+      let schoolList:Array<any> = [];
+      this.studentInfoList[index].emails.forEach( (item:any) => {
+        emailList.push(item.email);
+        this.studentInfoList[index].emailList = emailList.join(', ');
+      });
+      this.studentInfoList[index].mobile.forEach( (item:any) => {
+        mobileList.push(item.mobileNumber);
+        this.studentInfoList[index].mobileList = mobileList.join(', ');
+      });
+      this.studentInfoList[index].school.forEach( (item:any) => {
+        schoolList.push(item.schoolName,item.address,item.state,item.nationality,item.fromToYear);
+        this.studentInfoList[index].schoolList = schoolList.join(', ');
+      });
+    }   
   }
 
 }

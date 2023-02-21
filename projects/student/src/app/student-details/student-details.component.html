@@ -1,99 +1,175 @@
+
+
 <form [formGroup]="studentForm" (ngSubmit)="submit()">   
-    <div>     
+    <div class="container" id="input">   
+        <h2>Student Form</h2> 
+        <div class="form-group">     
         <label for="name"> Name</label>     
-        <input id="name" type="text" formControlName="name" />  
+        <input id="name" type="text" class="form-control form-control" formControlName="name" />  
      </div>   
      <div *ngIf="studentForm.controls['name'].errors?.['required'] && submitted" class="error">
         Name is required.
       </div>
-     <ng-container formArrayName="emails">     
-        <ng-container *ngFor="let emailForm of emails.controls; let i = index">       
-            <div [formGroupName]="i"> 
-                <label for="email"> Email</label>         
-                <input id="email" type="text" formControlName="email" />      
-            </div>     
-            <div class="error" *ngIf="submitted && emailIndex(i).controls['email'].hasError('required') "> 
-                Email is required.
-                <span>
+      <div class="form-group">
+        <ng-container formArrayName="emails">     
+            <ng-container *ngFor="let emailForm of emails.controls; let i = index">       
+                <div [formGroupName]="i"> 
+                    <label for="email"> Email</label>         
+                    <input id="email" type="text" class="form-control form-control" formControlName="email" />      
+                </div>     
+                <div class="error" *ngIf="submitted && emailIndex(i).controls['email'].hasError('required') "> 
+                    Email is required.
+                    <span>
 
-                </span>
-             </div> 
-             <div class="error" *ngIf=" submitted && emailIndex(i).controls['email'].hasError('pattern') "> 
-                Email is invalid.
-             </div>  
-        </ng-container>   
-    </ng-container>  
-    <button type="button" (click)="addNewEmail()">Add</button> 
+                    </span>
+                </div> 
+                <div class="error" *ngIf=" submitted && emailIndex(i).controls['email'].hasError('pattern') "> 
+                    Email is invalid.
+                </div>  
+            </ng-container>   
+        </ng-container>  
+     </div>   
+    <button type="button" class="btn btn-primary" (click)="addNewEmail()"> + Add Email</button> 
     <ng-container formArrayName="mobile">     
         <ng-container *ngFor="let mobileForm of mobile.controls; let i = index">       
             <div [formGroupName]="i"> 
-                <label for="mobileNumber"> Mobile Number</label>         
-                <input id="mobileNumber" type="text" formControlName="mobileNumber" />
-                <div class="error" *ngIf="submitted && mobileIndex(i).controls['mobileNumber'].hasError('required')"> 
-                    Mobile is required.
-                 </div> 
-                 <div class="error" *ngIf="submitted && mobileIndex(i).controls['mobileNumber'].hasError('maxlength')"> 
-                    Mobile Number is Invalid.
-                 </div> 
-                 <div class="error" *ngIf="submitted && mobileIndex(i).controls['mobileNumber'].hasError('pattern')"> 
-                    Mobile Number is Invalid.
-                 </div> 
-                    <input type="radio" value="home" formControlName="mobileType">
-                    <label for="home">Home</label>
-                    <input type="radio" value="mobile" formControlName="mobileType">
-                    <label for="mobile">Mobile</label>
-
-                    <input type="radio" value="work" formControlName="mobileType">
-                    <label for="work">Work</label>
+                <div class="row">
+                    <div class="form-group col-md-6" style="padding-bottom: 10px;">
+                        <label for="mobileNumber"> Mobile Number</label>         
+                        <input id="mobileNumber" type="text" class="form-control" formControlName="mobileNumber" />
+                        <div class="error" *ngIf="submitted && mobileIndex(i).controls['mobileNumber'].hasError('required')"> 
+                            Mobile is required.
+                        </div> 
+                        <div class="error" *ngIf="submitted && mobileIndex(i).controls['mobileNumber'].hasError('maxlength')"> 
+                            Mobile Number is Invalid.
+                        </div> 
+                        <div class="error" *ngIf="submitted && mobileIndex(i).controls['mobileNumber'].hasError('pattern')"> 
+                            Mobile Number is Invalid.
+                        </div> 
+                    </div>   
+                    <div class="form-group col-md-6">
+                        <div class="form-check form-check-inline">
+                        <input type="radio" value="home" class="form-check-input" formControlName="mobileType">
+                        <label for="home">Home</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" value="mobile" class="form-check-input" formControlName="mobileType">
+                            <label for="mobile">Mobile</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" value="work" class="form-check-input" formControlName="mobileType">
+                            <label for="work">Work</label>
+                        </div>
+                    </div>   
+                 </div>
             </div>     
         </ng-container>   
     </ng-container>     
-    <button type="button" (click)="addNewMobile()">Add</button> 
-    <ng-container formArrayName="school">     
-        <ng-container *ngFor="let schoolForm of school.controls; let i = index">       
-            <div [formGroupName]="i"> 
-                <label for="schoolName"> Name</label>         
-                <input id="schoolName" type="text" formControlName="schoolName" />
-                <div class="error" *ngIf="submitted && schoolIndex(i).controls['schoolName'].hasError('required')"> 
-                    Name is required.
-                 </div> 
-                <label for="address"> Address</label>  
-                <textarea id="address" type="text" formControlName="address" >
+    <button type="button" class="btn btn-primary" (click)="addNewMobile()"> + Add Mobile</button> 
+        <ng-container formArrayName="school">     
+            <ng-container *ngFor="let schoolForm of school.controls; let i = index">       
+                <div [formGroupName]="i"> 
+                    <br />
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="form-control-label" > School Information {{i+1}}</label>
+                        </div>
+                    </div>
+                    <br />
+                <div class="row">
+                  <div class="form-group col-md-6">  
+                    <label for="schoolName"> School Name</label>         
+                    <input id="schoolName" type="text" class="form-control" formControlName="schoolName" />
+                    <div class="error" *ngIf="submitted && schoolIndex(i).controls['schoolName'].hasError('required')"> 
+                        Name is required.
+                    </div> 
+                  </div>  
+                  <div class="form-group col-md-6">
+                    <label for="address"> Address</label>  
+                    <textarea id="address" type="text" class="form-control" formControlName="address" >
                     </textarea>
-                    <div class="error" *ngIf="submitted && schoolIndex(i).controls['address'].hasError('required')"> 
-                        Address is required.
-                     </div>
-                <label for="state">State:</label>
-                <select id="state" name="state" formControlName="state">
-                    <option value=""> All</option>
-                    <option *ngFor="let stateData of stateList">{{stateData.value}}</option>
-                </select>  
-                <div class="error" *ngIf="submitted && schoolIndex(i).controls['state'].hasError('required')"> 
-                    State is required.
-                 </div>
-                <label for="nationality">Nationality:</label>
-                <select id="nationality" name="nationality" formControlName="nationality">
-                      <option value=""> All</option> 
-                      <option *ngFor="let nationalityData of nationalityList"> {{nationalityData.value}} </option>
-                </select>  
-                <div class="error" *ngIf="submitted && schoolIndex(i).controls['nationality'].hasError('required')"> 
-                    Nationality is required.
-                 </div>
-                <label for="fromToYear">From-To Year:</label>
-                <select id="fromToYear" name="fromToYear" formControlName="fromToYear">
-                     <option value=""> All</option> 
-                     <option *ngFor="let data of fromToYearList"> {{data.value}} </option>
-                </select>  
-                <div class="error" *ngIf="submitted && schoolIndex(i).controls['fromToYear'].hasError('required')"> 
-                    From-To Year is required.
-                 </div>
-            </div>     
-        </ng-container>   
-    </ng-container>
-    <button type="button" (click)="addNewSchool()">Add</button> 
+                        <div class="error" *ngIf="submitted && schoolIndex(i).controls['address'].hasError('required')"> 
+                            Address is required.
+                        </div>
+                    </div>   
+                </div>    
+                <div class="row"> 
+                    <div class="form-group col-md-4">
+                        <label for="state">State:</label>
+                        <select id="state" name="state" class="form-control" formControlName="state">
+                            <option value=""> All</option>
+                            <option *ngFor="let stateData of stateList">{{stateData.value}}</option>
+                        </select>  
+                        <div class="error" *ngIf="submitted && schoolIndex(i).controls['state'].hasError('required')"> 
+                            State is required.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="nationality">Nationality:</label>
+                        <select id="nationality" name="nationality" class="form-control" formControlName="nationality">
+                            <option value=""> All</option> 
+                            <option *ngFor="let nationalityData of nationalityList"> {{nationalityData.value}} </option>
+                        </select>  
+                        <div class="error" *ngIf="submitted && schoolIndex(i).controls['nationality'].hasError('required')"> 
+                            Nationality is required.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fromToYear">From-To Year:</label>
+                        <select id="fromToYear" name="fromToYear" class="form-control" formControlName="fromToYear">
+                            <option value=""> All</option> 
+                            <option *ngFor="let data of fromToYearList"> {{data.value}} </option>
+                        </select>  
+                        <div class="error" *ngIf="submitted && schoolIndex(i).controls['fromToYear'].hasError('required')"> 
+                            From-To Year is required.
+                        </div>
+                    </div>    
+                </div>    
+                </div>     
+            </ng-container>   
+        </ng-container>
+    <button type="button" class="btn btn-primary" (click)="addNewSchool()"> + Add School</button> 
     <div>
-    <button class="mat-button" type="submit">Submit</button> 
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-10">
+              <button class="mat-button" class="btn btn-success" type="submit">Submit</button> 
+            </div>
+        </div>      
     </div>
 </form>
+
+
+
+<div class="container" id="input1">
+ <h3> Student List </h3>
+<table class="table table-striped">
+    <thead>
+		<tr>
+			<th class="col-md-1" scope="col">#</th>
+			<th class="col-md-2" scope="col">Name</th>
+		    <th class="col-md-3" scope="col">Email </th>
+			<th class="col-md-3" scope="col">Phone Number</th>
+           <th class="col-md-6" scope="col">School Information</th>
+		</tr>
+	</thead>
+  
+      <tbody *ngFor="let data of studentInfoList; index as i">
+        <tr>
+            <th  scope="row">{{ i + 1 }}</th>  
+            <td>{{data.name}}</td> 
+            <td>{{data.emailList}}</td>
+            <td>
+               {{data.mobileList}}
+            </td>
+            <td>
+                {{data.schoolList}}
+            </td>
+        </tr>
+      </tbody>
+
+</table>
+</div>
 
 
