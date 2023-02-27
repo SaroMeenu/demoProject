@@ -14,12 +14,12 @@ export class StudentDetailsComponent {
   fromToYearList = [{value:'2015-2016'},{value:'2016-2017'},{value:'2017-2018'},{value:'2018-2019'}]
   studentForm : FormGroup = this.fb.group({ 
     name: new FormControl('', [Validators.required]),     
-    emails: new FormArray([this.getemailForm()],[Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]), 
+    emails: new FormArray([this.getemailForm()]), 
     mobile: new FormArray([this.getMobileForm()]),   
     school: new FormArray([this.getSchoolForm()]),
 
   })
-  studentFormDataList: any =[];
+  studentFormDataList: Array<any> = [];
   stuData: any = [];
   studentInfoList: any;
 
@@ -27,6 +27,9 @@ export class StudentDetailsComponent {
 
   ngOnInit(): void {
     this.getStudentData();
+    if(this.stuData){
+        this.studentFormDataList = JSON.parse(this.stuData);
+      }
   }
 
   getemailForm() {    
@@ -101,9 +104,11 @@ export class StudentDetailsComponent {
 
   submit(){
     this.submitted = true;
-    if(this.submitted){
+    if(this.submitted && this.studentForm.valid){
       this.studentFormDataList.push(this.studentForm.value);
       localStorage.setItem('studentData',(JSON.stringify(this.studentFormDataList)));
+      this.studentForm.reset();
+      this.submitted = false;
       this.getStudentData();
     }   
   }
