@@ -6,4 +6,39 @@
       <a class="nav-link active" routerLink="/client-info/list-client">Tab 2</a>
     </li>
   </ul>
-  <p>list client works!</p>
+
+  <div class="container" id="input1">
+    <h3> Client List </h3>
+   <table class="table table-striped">
+       <thead>
+           <tr>
+               <th class="col-md-1" scope="col">#</th>
+               <th class="col-md-2" scope="col">Name</th>
+               <th class="col-md-2" scope="col">Email </th>
+               <th class="col-md-2" scope="col">Phone Number</th>
+              <th class="col-md-2" scope="col">Language</th>
+              <th class="col-md-6" scope="col">Actions</th>
+           </tr>
+       </thead>
+     
+         <tbody *ngFor="let data of clientDataList; index as i">
+           <tr>
+               <th  scope="row">{{ i + 1 }}</th>  
+               <td>{{data.name}}</td> 
+               <td>{{data.email}}</td>
+               <td>
+                  {{data.mobileNumber}}
+               </td>
+               <td>
+                   {{data.language}}
+               </td>
+               <td>
+                  <button class="btn btn-primary" (click)="deleteClient(data)"> Delete</button> &nbsp;&nbsp;
+                  <button *ngIf="!data.isPrimary" class="btn btn-warning" (click)="setAsPrimary(data)"> Primary Client</button>
+                  <label *ngIf="data.isPrimary"> Primary Client</label>
+               </td> 
+           </tr>
+         </tbody>
+   
+   </table>
+   </div>

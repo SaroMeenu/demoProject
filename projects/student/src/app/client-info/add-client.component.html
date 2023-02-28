@@ -43,11 +43,11 @@
                 <div class="row"> 
                     <div class="form-group col-md-4">
                         <label for="mobileNumber"> Mobile Number</label>         
-                        <input id="mobileNumber" type="text" class="form-control" formControlName="mobileNumber" />  
+                        <input id="mobileNumber" type="text" class="form-control"  phone  formControlName="mobileNumber" />  
                         <div class="error" *ngIf="submitted && clientInfoIndex(i).controls['mobileNumber'].hasError('required')"> 
                             Mobile Number is required.
                         </div>
-                        <div class="error" *ngIf="submitted && clientInfoIndex(i).controls['mobileNumber'].hasError('pattern')"> 
+                        <div class="error" *ngIf="submitted && clientInfoIndex(i).controls['mobileNumber'].hasError('minlength')"> 
                             Mobile Number is Invalid.
                         </div> 
                     </div>

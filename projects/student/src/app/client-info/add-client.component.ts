@@ -18,12 +18,11 @@ export class AddClientComponent {
 
     ngOnInit(): void {
       }
-
     getClientInfoForm() {    
         return new FormGroup({      
           name: new FormControl("",Validators.required),    
           email: new FormControl("",[Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-          mobileNumber: new FormControl("",[Validators.required,Validators.pattern("^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3} - [0-9]{4}$")]),
+          mobileNumber: new FormControl("",[Validators.required,Validators.minLength(14)]),
           language: new FormControl("",Validators.required),
         });  
     }
@@ -44,7 +43,12 @@ export class AddClientComponent {
     }
 
     submit(){
-      console.log(this.clientForm.value);
       this.submitted = true;
+      if(this.clientForm.valid){
+        this.clientForm.value.clientInfo.forEach((item:any,i:any) => {
+            item.id = i+1;
+        });
+        localStorage.setItem('clientData',(JSON.stringify(this.clientForm.value.clientInfo)));
+       }
     }
 }
