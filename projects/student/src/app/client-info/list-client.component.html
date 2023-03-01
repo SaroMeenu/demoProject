@@ -27,7 +27,7 @@
                <td>{{data.name}}</td> 
                <td>{{data.email}}</td>
                <td>
-                  {{data.mobileNumber}}
+                  {{data.mobileNumber | mask: '(000) 000-0000'}}
                </td>
                <td>
                    {{data.language}}

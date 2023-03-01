@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { FormlyFieldConfig , FormlyModule }from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { MortgageComponent } from './mortgage/mortgage.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { MortgageComponent } from './mortgage/mortgage.component';
     FormlyMaterialModule,
     CommonModule,
     FormlyModule.forRoot({}),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

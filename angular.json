@@ -31,7 +31,8 @@
 						],
 						"styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"projects/shell/src/styles.scss"
+							"projects/shell/src/styles.scss",
+							"node_modules/ngx-toastr/toastr.css"
 						],
 						"scripts": [],
 						"extraWebpackConfig": "projects/shell/webpack.config.js",
@@ -105,7 +106,8 @@
 						],
 						"styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"projects/shell/src/styles.scss"
+							"projects/shell/src/styles.scss",
+							"node_modules/ngx-toastr/toastr.css"
 						],
 						"scripts": []
 					}
@@ -140,7 +142,8 @@
 						],
 						"styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"projects/employee/src/styles.scss"
+							"projects/employee/src/styles.scss",
+							"node_modules/ngx-toastr/toastr.css"
 						],
 						"scripts": [],
 						"extraWebpackConfig": "projects/employee/webpack.config.js",
@@ -214,7 +217,8 @@
 						],
 						"styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"projects/employee/src/styles.scss"
+							"projects/employee/src/styles.scss",
+							"node_modules/ngx-toastr/toastr.css"
 						],
 						"scripts": []
 					}
@@ -248,7 +252,8 @@
 							"projects/student/src/assets"
 						],
 						"styles": [
-							"projects/student/src/styles.scss"
+							"projects/student/src/styles.scss",
+							"node_modules/ngx-toastr/toastr.css"
 						],
 						"scripts": [],
 						"extraWebpackConfig": "projects/student/webpack.config.js",
@@ -321,7 +326,8 @@
 							"projects/student/src/assets"
 						],
 						"styles": [
-							"projects/student/src/styles.scss"
+							"projects/student/src/styles.scss",
+							"node_modules/ngx-toastr/toastr.css"
 						],
 						"scripts": []
 					}

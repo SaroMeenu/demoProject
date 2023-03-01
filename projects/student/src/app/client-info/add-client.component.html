@@ -43,7 +43,7 @@
                 <div class="row"> 
                     <div class="form-group col-md-4">
                         <label for="mobileNumber"> Mobile Number</label>         
-                        <input id="mobileNumber" type="text" class="form-control"  phone  formControlName="mobileNumber" />  
+                        <input id="mobileNumber" type="text" class="form-control"  mask="(000) 000-0000"  formControlName="mobileNumber" />  
                         <div class="error" *ngIf="submitted && clientInfoIndex(i).controls['mobileNumber'].hasError('required')"> 
                             Mobile Number is required.
                         </div>
