@@ -33,7 +33,7 @@
                    {{data.language}}
                </td>
                <td>
-                  <button class="btn btn-primary" (click)="deleteClient(data)"> Delete</button> &nbsp;&nbsp;
+                  <button class="btn btn-primary" (click)="deleteClient(data,i)"> Delete</button> &nbsp;&nbsp;
                   <button *ngIf="!data.isPrimary" class="btn btn-warning" (click)="setAsPrimary(data)"> Primary Client</button>
                   <label *ngIf="data.isPrimary"> Primary Client</label>
                </td> 

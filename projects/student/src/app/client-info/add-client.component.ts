@@ -1,7 +1,16 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { from, map } from 'rxjs';
 
+const controlNames = {
+    name: 'name',
+    email: 'email',
+    mobileNumber: 'mobileNumber',
+    language: 'language',
+};
+
+  
 @Component({
   selector: 'app-add-client',
   templateUrl: './add-client.component.html',
@@ -9,21 +18,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddClientComponent {
 
-    languageList = [{value:'Tamil'},{value:'English'},{value:'Hindi'},{value:'Telugu'},{value:'Malayalam'}];
-    submitted:boolean = false;
-    clientForm : FormGroup = this.fb.group({ 
+    public languageList = [{value:'Tamil'},{value:'English'},{value:'Hindi'},{value:'Telugu'},{value:'Malayalam'}];
+    public readonly controlNames = controlNames;
+    public clientForm : FormGroup = this.fb.group({ 
         clientInfo: new FormArray([this.getClientInfoForm()]),
     
       })
-    clientFormDataList: Array<any> =[];
     constructor(private fb: FormBuilder,private toastr: ToastrService) { } 
 
     ngOnInit(): void {
-        let val = localStorage.getItem('clientData');
-        if(val){
-            this.clientFormDataList = JSON.parse(val);
-          }
-      }
+    }
     getClientInfoForm() {    
         return new FormGroup({      
           name: new FormControl("",Validators.required),    
@@ -35,7 +39,7 @@ export class AddClientComponent {
 
     get clientInfo() { 
         return this.clientForm.controls["clientInfo"] as FormArray; 
-      }  
+    }  
 
     addNewClient(){     
         const control = <FormArray>(this.clientForm.get("clientInfo"));    
@@ -53,20 +57,20 @@ export class AddClientComponent {
     }
 
     submit(){
-      this.submitted = true;
       if(this.clientForm.valid){
         
-        for (let index = 0; index < this.clientForm.value.clientInfo.length; index++) {
-            this.clientFormDataList.push(this.clientForm.value.clientInfo[index]);
-            
+        let val = localStorage.getItem('clientData');
+        if(val){
+            var clientVal = JSON.parse(val);
         }
-        this.clientFormDataList.forEach((item:any,i:any) => {
-            item.id = i+1;
-        });
-        localStorage.setItem('clientData',(JSON.stringify(this.clientFormDataList)));
+        let clientData= [...clientVal, ...this.clientForm.value.clientInfo]
+        clientData.map((d:any,i:any) => d.id = i+1 );
+        localStorage.setItem('clientData',(JSON.stringify(clientData)));
         this.showSuccess();
         this.clientForm.reset();
-        this.submitted = false;
+       }
+       else {
+        this.clientForm.markAllAsTouched();
        }
     }
 }

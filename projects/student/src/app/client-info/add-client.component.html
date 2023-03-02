@@ -25,17 +25,17 @@
                   <div class="form-group col-md-6">  
                     <label for="name"> Name</label>         
                     <input id="name" type="text" class="form-control form-control" formControlName="name" />   
-                    <div class="error" *ngIf="submitted && clientInfoIndex(i).controls['name'].hasError('required')"> 
+                    <div class="error" *ngIf="clientInfoIndex(i).controls['name'].touched && clientInfoIndex(i).controls['name'].hasError('required')"> 
                         Name is required.
                     </div> 
                   </div>  
                   <div class="form-group col-md-6">
                     <label for="email"> Email</label>  
                     <input id="email" type="text" class="form-control form-control" formControlName="email" />  
-                        <div class="error" *ngIf="submitted && clientInfoIndex(i).controls['email'].hasError('required')"> 
+                        <div class="error" *ngIf="clientInfoIndex(i).controls['email'].touched && clientInfoIndex(i).controls['email'].hasError('required')"> 
                             Email is required.
                         </div>
-                        <div class="error" *ngIf="submitted && clientInfoIndex(i).controls['email'].hasError('pattern') "> 
+                        <div class="error" *ngIf="clientInfoIndex(i).controls['email'].touched && clientInfoIndex(i).controls['email'].hasError('pattern') "> 
                             Email is invalid.
                         </div> 
                     </div>   
@@ -44,10 +44,10 @@
                     <div class="form-group col-md-4">
                         <label for="mobileNumber"> Mobile Number</label>         
                         <input id="mobileNumber" type="text" class="form-control"  mask="(000) 000-0000"  formControlName="mobileNumber" />  
-                        <div class="error" *ngIf="submitted && clientInfoIndex(i).controls['mobileNumber'].hasError('required')"> 
+                        <div class="error" *ngIf="clientInfoIndex(i).controls['mobileNumber'].touched && clientInfoIndex(i).controls['mobileNumber'].hasError('required')"> 
                             Mobile Number is required.
                         </div>
-                        <div class="error" *ngIf="submitted && clientInfoIndex(i).controls['mobileNumber'].hasError('minlength')"> 
+                        <div class="error" *ngIf="clientInfoIndex(i).controls['mobileNumber'].touched && clientInfoIndex(i).controls['mobileNumber'].hasError('minlength')"> 
                             Mobile Number is Invalid.
                         </div> 
                     </div>
@@ -57,7 +57,7 @@
                             <option value=""> All</option> 
                             <option *ngFor="let languageList of languageList"> {{languageList.value}} </option>
                         </select>  
-                        <div class="error" *ngIf="submitted && clientInfoIndex(i).controls['language'].hasError('required')"> 
+                        <div class="error" *ngIf="clientInfoIndex(i).controls['language'].touched && clientInfoIndex(i).controls['language'].hasError('required')"> 
                             Language is required.
                         </div>
                     </div>    

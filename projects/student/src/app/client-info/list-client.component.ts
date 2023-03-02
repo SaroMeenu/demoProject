@@ -21,24 +21,17 @@ export class ListClientComponent {
     }
 
     setAsPrimary(data:any){
-        this.clientDataList.forEach((item:any) => {
-            item.isPrimary = false;
-        });
         this.clientDataList.forEach((client:any) => {
-            if(client.id == data.id){
+            client.isPrimary = false;
+            if(client.id === data.id){
                 data.isPrimary = true;
             } 
         });
         localStorage.setItem("clientData", JSON.stringify(this.clientDataList));
     }
 
-    deleteClient(data:any){
-
-        this.clientDataList.forEach((clientList:any,i:any) => {
-            if(clientList.id == data.id){
-                this.clientDataList.splice(i, 1);
-            }
-        });
+    deleteClient(data:any,i:any){
+        this.clientDataList.splice(i, 1);
         localStorage.setItem("clientData", JSON.stringify(this.clientDataList));
     }
 
