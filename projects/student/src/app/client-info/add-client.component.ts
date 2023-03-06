@@ -62,8 +62,11 @@ export class AddClientComponent {
         let val = localStorage.getItem('clientData');
         if(val){
             var clientVal = JSON.parse(val);
+            var clientData = [...clientVal, ...this.clientForm.value.clientInfo]
         }
-        let clientData= [...clientVal, ...this.clientForm.value.clientInfo]
+        else{
+            var clientData = [...this.clientForm.value.clientInfo]
+        }
         clientData.map((d:any,i:any) => d.id = i+1 );
         localStorage.setItem('clientData',(JSON.stringify(clientData)));
         this.showSuccess();

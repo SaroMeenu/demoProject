@@ -1,0 +1,39 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/client-info/add-client">Tab 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/client-info/list-client">Tab 2</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" routerLink="/client-info/view-client">Tab 3</a>
+    </li>
+</ul>
+
+
+   <div class="container p-3">
+    <h2> Primary Client Information</h2>
+    <div *ngIf="primaryClientList">
+        <div class="row">
+            <div class="col-md-3 p-3 bg-light border">Name</div>
+            <div class="col-md-3 p-3 bg-light border">{{primaryClientList.name}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 p-3 bg-light border">Email</div>
+                <div class="col-md-3 p-3 bg-light border">{{primaryClientList.email}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 p-3 bg-light border">Mobile Number</div>
+                <div class="col-md-3 p-3 bg-light border">{{primaryClientList.mobileNumber | mask: '(000) 000-0000'}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 p-3 bg-light border">Language</div>
+                <div class="col-md-3 p-3 bg-light border">{{primaryClientList.language}}</div>
+            </div>
+        </div>
+    <div *ngIf="!primaryClientList">
+        <div class="row">
+          <div class="col-md-12 p-3 bg-light">  No Data Found. </div>
+        </div>
+    </div>
+    </div>

@@ -8,6 +8,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 export class ListClientComponent {
     clientData: any;
     clientDataList: any;
+    primaryData: any;
 
     constructor(private fb: FormBuilder) { } 
 
@@ -25,6 +26,7 @@ export class ListClientComponent {
             client.isPrimary = false;
             if(client.id === data.id){
                 data.isPrimary = true;
+                localStorage.setItem("primaryData", JSON.stringify(data));
             } 
         });
         localStorage.setItem("clientData", JSON.stringify(this.clientDataList));
@@ -32,6 +34,10 @@ export class ListClientComponent {
 
     deleteClient(data:any,i:any){
         this.clientDataList.splice(i, 1);
+        this.primaryData = localStorage.getItem('primaryData');
+        if((this.primaryData) && (i.id === this.primaryData.id)){
+            localStorage.removeItem("primaryData");
+        } 
         localStorage.setItem("clientData", JSON.stringify(this.clientDataList));
     }
 
