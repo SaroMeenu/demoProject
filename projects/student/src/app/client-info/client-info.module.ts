@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaskDirective } from './phone-mask.directive';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { ApiService } from '../services/api.service';
 
 @NgModule({
   declarations: [ClientInfoComponent,AddClientComponent,ListClientComponent,ViewClientComponent,MaskDirective],
@@ -23,6 +24,6 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
   exports: [
     MaskDirective
   ],
-  providers: [provideNgxMask()]
+  providers: [provideNgxMask(),ApiService]
 })
 export class ClientInfoModule { }

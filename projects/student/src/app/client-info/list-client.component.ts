@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-list-client',
@@ -10,7 +11,7 @@ export class ListClientComponent {
     clientDataList: any;
     primaryData: any;
 
-    constructor(private fb: FormBuilder) { } 
+    constructor(private fb: FormBuilder,public apiService:ApiService) { } 
 
     ngOnInit(): void {
         this.getClientDetails();
@@ -26,18 +27,18 @@ export class ListClientComponent {
             client.isPrimary = false;
             if(client.id === data.id){
                 data.isPrimary = true;
-                localStorage.setItem("primaryData", JSON.stringify(data));
+                this.apiService.setUser(data);
             } 
         });
         localStorage.setItem("clientData", JSON.stringify(this.clientDataList));
     }
 
     deleteClient(data:any,i:any){
-        this.clientDataList.splice(i, 1);
-        this.primaryData = localStorage.getItem('primaryData');
-        if((this.primaryData) && (i.id === this.primaryData.id)){
-            localStorage.removeItem("primaryData");
+        let filterClient = this.clientDataList.filter((a:any) => a.isPrimary === true);
+        if(data.id === filterClient[0].id){
+            this.apiService.setUser('');
         } 
+        this.clientDataList.splice(i, 1);        
         localStorage.setItem("clientData", JSON.stringify(this.clientDataList));
     }
 
