@@ -1,0 +1,71 @@
+<form [formGroup]="adminForm" (ngSubmit)="submit()">
+   <div class="container" id="input">
+      <h2> Admin Form</h2>
+      <ng-container formArrayName="adminInfo">
+          <ng-container *ngFor="let adminData of adminInfo.controls; let i = index">
+             <div [formGroupName]="i">
+                  <br />
+                  <div class="row">
+                      <div class="form-group col-md-6">
+                          <label class="form-control-label"> Admin Information {{i+1}}</label>
+                      </div>
+                  </div>
+                  <br />
+                  <div class="row">
+                    <div class="form-group col-md-6">  
+                      <label for="name"> Name</label>         
+                      <input id="name" type="text" class="form-control form-control" formControlName="name" />   
+                      <div class="error" *ngIf="adminInfoIndex(i).controls['name'].touched && adminInfoIndex(i).controls['name'].hasError('required')"> 
+                          Name is required.
+                      </div> 
+                    </div>  
+                    <div class="form-group col-md-6">
+                      <label for="email"> Email</label>  
+                      <input id="email" type="text" class="form-control form-control" formControlName="email" />  
+                          <div class="error" *ngIf="adminInfoIndex(i).controls['email'].touched && adminInfoIndex(i).controls['email'].hasError('required')"> 
+                              Email is required.
+                          </div>
+                          <div class="error" *ngIf="adminInfoIndex(i).controls['email'].touched && adminInfoIndex(i).controls['email'].hasError('pattern') "> 
+                              Email is invalid.
+                          </div> 
+                      </div>   
+                  </div> 
+                  <div class="row"> 
+                    <div class="form-group col-md-4">
+                        <label for="mobileNumber"> Mobile Number</label>         
+                        <input id="mobileNumber" type="text" class="form-control"  mask="(000) 000-0000"  formControlName="mobileNumber" />  
+                        <div class="error" *ngIf="adminInfoIndex(i).controls['mobileNumber'].touched && adminInfoIndex(i).controls['mobileNumber'].hasError('required')"> 
+                            Mobile Number is required.
+                        </div>
+                        <div class="error" *ngIf="adminInfoIndex(i).controls['mobileNumber'].touched && adminInfoIndex(i).controls['mobileNumber'].hasError('minlength')"> 
+                            Mobile Number is Invalid.
+                        </div> 
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="language">Language:</label>
+                        <select id="language" name="language" class="form-control" formControlName="language">
+                            <option value=""> All</option> 
+                            <option *ngFor="let languageList of languageList"> {{languageList.value}} </option>
+                        </select>  
+                        <div class="error" *ngIf="adminInfoIndex(i).controls['language'].touched && adminInfoIndex(i).controls['language'].hasError('required')"> 
+                            Language is required.
+                        </div>
+                    </div>    
+                </div> 
+             </div>
+
+          </ng-container>
+      </ng-container>
+      <button type="button" class="btn btn-primary" (click)="addNewAdmin()"> + Add Admin</button>
+        <div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button class="mat-button" class="btn btn-success" type="submit">Submit</button>
+            </div>
+        </div>
+
+   </div>
+    
+</form>

@@ -8,6 +8,8 @@ const routes: Routes = [
   { path: 'mortgage' , 
     component: MortgageComponent},
   { path: 'client-info', loadChildren: () => import('./../../../../../microFrontEnds/projects/student/src/app/client-info/client-info.module').then(m => m.ClientInfoModule) },
+  { path: 'clients' , loadChildren: () => import('./../../../../../microFrontEnds/projects/clients/src/app/clients-add/clients-add.module').then(m => m.ClientsAddModule) },
+  { path: 'admin' , loadChildren: () => import('./../../../../../microFrontEnds/projects/admin/src/app/add-admin/add-admin.module').then(m => m.AddAdminModule) },
   
 ];
 
