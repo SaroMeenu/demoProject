@@ -52,11 +52,11 @@ export class AddAdminFormComponent {
     submit(){
         if(this.adminForm.valid){
             for (let index = 0; index < this.adminForm.value.adminInfo.length; index++) {
-              this.store.dispatch(new AdminActions.AddDemo({
-                name : this.adminForm.value.clientInfo[index].name,
-                email : this.adminForm.value.clientInfo[index].email,
-                mobileNumber : this.adminForm.value.clientInfo[index].mobileNumber,
-                language : this.adminForm.value.clientInfo[index].language,
+              this.store.dispatch(new AdminActions.AddAdmin({
+                name : this.adminForm.value.adminInfo[index].name,
+                email : this.adminForm.value.adminInfo[index].email,
+                mobileNumber : this.adminForm.value.adminInfo[index].mobileNumber,
+                language : this.adminForm.value.adminInfo[index].language,
               }
               ))
               
