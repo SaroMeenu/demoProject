@@ -472,6 +472,7 @@
 							"projects/admin/src/assets"
 						],
 						"styles": [
+							"node_modules/bootstrap/dist/css/bootstrap.min.css",
 							"projects/admin/src/styles.scss"
 						],
 						"scripts": [],
@@ -545,6 +546,7 @@
 							"projects/admin/src/assets"
 						],
 						"styles": [
+							"node_modules/bootstrap/dist/css/bootstrap.min.css",
 							"projects/admin/src/styles.scss"
 						],
 						"scripts": []

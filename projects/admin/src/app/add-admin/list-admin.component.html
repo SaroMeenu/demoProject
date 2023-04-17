@@ -1,1 +1,45 @@
-<p> List Admin Works !!! </p>
+<div class="right" *ngIf="admin">
+  <span  *ngIf="admin"> </span> 
+    <section>
+      <h3>
+        NgRx Demo
+      </h3>
+      <table id="table" class="table table-striped">
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Email
+          </th>
+          <th>
+            Mobile Number
+          </th>
+          <th>
+            Language
+          </th>
+          <th>
+            Actions
+          </th>
+        </tr>
+          <tr *ngFor="let d of admin  | async ; let i = index">
+            <td> 
+                {{d.name}}
+            </td>
+            <td>
+                {{d.email}}
+            </td>
+            <td>
+                {{d.mobileNumber}}
+            </td>
+            <td>
+                {{d.language}}
+            </td>
+            <td>
+                <button class="btn-primary" (click)="deleteAdmin(i)">Delete </button>
+            </td>
+          </tr>
+        
+      </table>
+    </section>
+  </div>

@@ -16,10 +16,16 @@ export class ListAdminComponent {
     constructor(private store:Store<AppState>){
         this.admin = this.store.select('adminStore');
         this.userData = this.admin.subscribe(event => console.log(event));
+        console.log(this.admin);
     }
 
     ngOnInit(){
 
+    }
+
+    deleteAdmin(index:number){
+       console.log(index);
+       this.store.dispatch(new AdminActions.RemoveAdmin(index));       
     }
     
 }

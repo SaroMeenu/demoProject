@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from '../app.state';
+import { reducer } from '../reducers/admin.reducer';
 
 @NgModule({
   declarations: [AddAdminComponent,AddAdminFormComponent,ListAdminComponent],
@@ -19,6 +20,8 @@ import { reducers, metaReducers } from '../app.state';
     NgxMaskDirective,
     NgxMaskPipe,
     StoreModule.forRoot( reducers , {metaReducers })
+    // StoreModule.forRoot({ adminStore: reducer })
+
   ],
   providers:[provideNgxMask()]
 })
